@@ -10,96 +10,43 @@ int main() {
     // variavel para switch e comparaçoes
 
     int opcao;
-    unsigned long int atributo1;
-    unsigned long int atributo2;
+    long double atributo1;
+    long double atributo2;
 
     // decidi em um primeiro momento ja criar variaveis que me ajudaram na comparação e exibicao dos resultados
     // comparando 1 -> A, 2 -> B e usando elas na exibicao dos resultados acredito que em um primeiro momento
     // isso me ajude a resolver de forma mais direta
 
-    unsigned long int atributoA;
-    unsigned long int atributoB;
+    long double atributoA;
+    long double atributoB;
 
 
     // Definição das variáveis para armazenar as propriedades das cidades
     // Carta 1
 
-    char codigo1[4]; 
-    char nomeCidade1[20];
-    unsigned long int populacao1;
-    float area1;
-    float pib1;
-    int pontosTuristicos1;
-    char estado1[20];
+    char codigo1[4] = "A01";
+    char nomeCidade1[20] = "Tucano";
+    int populacao1 = 10000;
+    float area1 = 20000;
+    float pib1 = 2;
+    int pontosTuristicos1 = 3;
+    char estado1[20] = "Bahia";
     long double densidadePop1;
     long double pibPer1;
 
     // Carta 2
 
-    char codigo2[4];
-    char nomeCidade2[20];
-    unsigned long int populacao2;
-    float area2;
-    float pib2;
-    int pontosTuristicos2;
-    char estado2[20];
+    char codigo2[4] = "B02";
+    char nomeCidade2[20] = "Aracaju";
+    int populacao2 = 7000;
+    float area2 = 5000;
+    float pib2 = 3;
+    int pontosTuristicos2 = 10;
+    char estado2[20] = "Sergipe";
     long double densidadePop2;
     long double pibPer2;
     
-    // Cadastro das Cartas:
-    // Implemente a lógica para solicitar ao usuário que insira os dados das cidades
-    // utilizando a função scanf para capturar as entradas.
-    
-    // Entrada Carta1
 
-    printf("=== Cadastro de Carta Super Trunfo ===\n");
-    printf("\n=== Carta1 ===\n");
-    
-    printf("Digite o estado: ");
-    scanf(" %[^\n]", estado1); 
-
-    printf("Digite o código da carta (ex: A01): ");
-    scanf("%3s", codigo1);
-
-    printf("Digite o nome da cidade: ");
-    scanf(" %[^\n]", nomeCidade1); 
-
-    printf("Digite a população: ");
-    scanf("%lu", &populacao1);
-
-    printf("Digite o PIB (em bilhões): ");
-    scanf("%f", &pib1);
-
-    printf("Digite a área (em km²): ");
-    scanf("%f", &area1);
-
-    printf("Digite o número de pontos turísticos: ");
-    scanf("%d", &pontosTuristicos1);
-
-    // Entrada Carta2
-
-    printf("\n=== Carta2 ===\n");
-    
-    printf("Digite o estado: ");
-    scanf(" %[^\n]", estado2); 
-
-    printf("Digite o código da carta (ex: A01): ");
-    scanf("%3s", codigo2);
-
-    printf("Digite o nome da cidade: ");
-    scanf(" %[^\n]", nomeCidade2); 
-
-    printf("Digite a população: ");
-    scanf("%lu", &populacao2);
-
-    printf("Digite o PIB (em bilhões): ");
-    scanf("%f", &pib2);
-
-    printf("Digite a área (em km²): ");
-    scanf("%f", &area2);
-
-    printf("Digite o número de pontos turísticos: ");
-    scanf("%d", &pontosTuristicos2);
 
     // Escolha de atributos para comparação
 
@@ -191,19 +138,19 @@ int main() {
             atributo2 = pontosTuristicos1;
             atributoB = pontosTuristicos2;
             printf("você escolheu Pontos Turisticos como segundo atributo\n");
-
             break;
+
         case 5:
             atributo2 = densidadePop1;
             atributoB = densidadePop2;
             printf("você escolheu Pontos Densidade Populacional como segundo atributo\n");
-
+            break;
 
         default:
             printf("Opção inválida. Tente novamente.\n");
         }
         
-    printf("%Lu,%Lu,%Lu,%Lu,", atributo1, atributo2, atributoA, atributoB);
+    printf("%.3Lf, %.3Lf, %.3Lf, %.31Lf\n", atributo1, atributo2, atributoA, atributoB);
 
     // Comparação de Cartas:
     // Desenvolva a lógica de comparação entre duas cartas.
