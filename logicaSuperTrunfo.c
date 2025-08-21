@@ -165,15 +165,14 @@ int main() {
     // Comparando os dois primeiros atributos
 
     char resultado[100];
-    int somaAtributos;
-
+    
     // Para o caso de atributos diferentes em que não são a densidade populacional
     if (atributo1 != atributo2 && strcmp(nomeAtributo1, "Densidade Populacional") != 0) {
         (atributo1 > atributo2) 
             ? snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade1, nomeAtributo1)
             : snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade2, nomeAtributo1);
             
-            printf("%s\n", resultado);
+            printf("\n%s\n", resultado);
             printf("%s => %s: %.3Lf, %s: %.3Lf\n", nomeAtributo1, nomeCidade1, atributo1, nomeCidade2, nomeAtributo2, atributo2);
     
     // Para o caso de atributos diferentes em que são a densidade populacional    
@@ -182,13 +181,14 @@ int main() {
             ? snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade2, nomeAtributo1)
             : snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade1, nomeAtributo1); 
 
-            printf("%s\n", resultado);
+            printf("\n%s\n", resultado);
             printf("%s => %s: %.3Lf, %s: %.3Lf\n", nomeAtributo1, nomeCidade1, atributo1, nomeCidade2, nomeAtributo2, atributo2);
 
     //Usei o else para o caso em que da empate, pois acredito que não ha mais possibilidades
     //Neste caso não faz diferença se estamos tratando da densidade populacional ou não
     } else {
-        printf("Empate no atributo %s entre as Cidades %s e %s", nomeAtributo1, nomeCidade2, nomeCidade1);
+        printf("\nEmpate no atributo %s entre as Cidades %s e %s\n", nomeAtributo1, nomeCidade2, nomeCidade1);
+        printf("%s => %s: %.3Lf, %s: %.3Lf\n", nomeAtributo1, nomeCidade1, atributo1, nomeCidade2, nomeAtributo2, atributo2);
     }
 
 
@@ -199,7 +199,7 @@ int main() {
             ? snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade1, nomeAtributo2)
             : snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade2, nomeAtributo2);
             
-            printf("%s\n", resultado);
+            printf("\n%s\n", resultado);
             printf("%s => %s: %.3Lf, %s: %.3Lf\n", nomeAtributo2, nomeCidade1, atributoA, nomeCidade2, nomeAtributo2, atributoB);
     
     // Para o caso de atributos diferentes em que são a densidade populacional    
@@ -208,19 +208,74 @@ int main() {
             ? snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade2, nomeAtributo2)
             : snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade1, nomeAtributo2); 
 
-            printf("%s\n", resultado);
+            printf("\n%s\n", resultado);
             printf("%s => %s: %.3Lf, %s: %.3Lf\n", nomeAtributo1, nomeCidade1, atributoA, nomeCidade2, nomeAtributo2, atributoB);
 
     //Usei o else para o caso em que da empate, pois acredito que não ha mais possibilidades
     //Neste caso não faz diferença se estamos tratando da densidade populacional ou não
     } else {
-        printf("Empate no atributo %s entre as Cidades %s e %s", nomeAtributo1, nomeCidade2, nomeCidade1);
+        printf("\nEmpate no atributo %s entre as Cidades %s e %s\n", nomeAtributo2, nomeCidade2, nomeCidade1);
+        printf("%s => %s: %.3Lf, %s: %.3Lf\n", nomeAtributo2, nomeCidade1, atributoA, nomeCidade2, nomeAtributo2, atributoB);
+
     }
     
-    // agora irei somar os atributos e declarar o campeão, no caso da densidade irei subtrair para ser coerente
+    // agora irei somar os atributos, no caso da densidade irei subtrair para ser coerente
 
+    long double somaAtributos1;
+    long double somaAtributos2;
     
+    // caso primeiro atributo seja densidade
+    if (strcmp(nomeAtributo1, "Densidade Populacional") == 0) {
 
+        somaAtributos1 = atributoA - atributo1;
+
+    // caso segundo atributo seja densidade
+    } else if (strcmp(nomeAtributo2, "Densidade Populacional") == 0) {
+
+        somaAtributos1 = atributo1 - atributoA;
+
+    // caso em que nenhum dos dois é densidade
+    } else {
+
+        somaAtributos1 = atributo1 + atributoA;
+
+    }
+
+    //repetindo o preocesso da soma
+    if (strcmp(nomeAtributo1, "Densidade Populacional") == 0) {
+
+        somaAtributos2 = atributoB - atributo2;
+
+    // caso segundo atributo seja densidade
+    } else if (strcmp(nomeAtributo2, "Densidade Populacional") == 0) {
+
+        somaAtributos2 = atributo2 - atributoB;
+
+    // caso em que nenhum dos dois é densidade
+    } else {
+
+        somaAtributos2 = atributo2 + atributoB;
+    }
+
+    // Resultado final da soma
+
+    // Empate
+    if (somaAtributos1 == somaAtributos2) {
+
+        printf("\n EMPATE \n%s: %.3Lf, %s: %3.Lf", nomeCidade1, somaAtributos1, nomeCidade2, somaAtributos2);
+    
+    // Primeira Cidade venceu
+    } else if (somaAtributos1 > somaAtributos2) {
+
+        printf("\n Cidade %s VENCEU:\n %s: %.3Lf, %s: %3.Lf", nomeCidade1, nomeCidade1, somaAtributos1, nomeCidade2, somaAtributos2);
+
+    // Segunda Cidade venceu
+    } else {
+
+        printf("\n Cidade %s VENCEU:\n %s: %.3Lf, %s: %3.Lf", nomeCidade2, nomeCidade2, somaAtributos2, nomeCidade1, somaAtributos1);
+
+
+    }
 
 
     return 0;
