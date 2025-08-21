@@ -14,8 +14,9 @@ int main() {
     long double atributo2;
 
     // decidi em um primeiro momento ja criar variaveis que me ajudaram na comparação e exibicao dos resultados
-    // comparando 1 -> A, 2 -> B e usando elas na exibicao dos resultados acredito que em um primeiro momento
-    // isso me ajude a resolver de forma mais direta
+    // comparando 1 -> 2, A -> B e usando-as na exibicao dos resultados 
+    char nomeAtributo1[25];
+    char nomeAtributo2[25];
 
     long double atributoA;
     long double atributoB;
@@ -26,13 +27,14 @@ int main() {
 
     char codigo1[4] = "A01";
     char nomeCidade1[20] = "Tucano";
-    int populacao1 = 10000;
+    int populacao1 = 30000;
     float area1 = 20000;
     float pib1 = 2;
     int pontosTuristicos1 = 3;
     char estado1[20] = "Bahia";
     long double densidadePop1;
     long double pibPer1;
+    densidadePop1 = (long double) populacao1 / area1;
 
     // Carta 2
 
@@ -45,8 +47,7 @@ int main() {
     char estado2[20] = "Sergipe";
     long double densidadePop2;
     long double pibPer2;
-    
-
+    densidadePop2 = (long double) populacao2 / area2;
 
     // Escolha de atributos para comparação
 
@@ -60,8 +61,9 @@ int main() {
 
     switch (opcao) {
         case 1:
+            strcpy(nomeAtributo1, "População");
             atributo1 = populacao1;
-            atributoA = populacao2;
+            atributo2 = populacao2;
             printf("você escolheu População, escolha o segundo atributo\n");
             printf("2. Pib\n");
             printf("3. Area\n");
@@ -70,8 +72,9 @@ int main() {
             break;
 
         case 2:
+            strcpy(nomeAtributo1, "Pib");
             atributo1 = pib1;
-            atributoA = pib2;
+            atributo2 = pib2;
             printf("você escolheu Pib, escolha o segundo atributo\n");
             printf("Escolha dois atributos para comparação\n");
             printf("1. População\n");
@@ -81,8 +84,9 @@ int main() {
             break;
 
         case 3:
+            strcpy(nomeAtributo1, "Area");
             atributo1 = area1;
-            atributoA = area2;
+            atributo2 = area2;
             printf("você escolheu Area, escolha o segundo atributo\n");
             printf("1. População\n");
             printf("2. Pib\n");
@@ -90,8 +94,9 @@ int main() {
             printf("5. Densidade Populacional\n");
             break;
         case 4:
+            strcpy(nomeAtributo1, "Pontos Turisticos");
             atributo1 = pontosTuristicos1;
-            atributoA = pontosTuristicos2;
+            atributo2 = pontosTuristicos2;
             printf("você escolheu Pontos Turisticos, escolha o segundo atributo\n");
             printf("1. População\n");
             printf("2. Pib\n");
@@ -99,8 +104,9 @@ int main() {
             printf("5. Densidade Populacional\n");
             break;
         case 5:
-            atributo1 = densidadePop1;
-            atributoA = densidadePop2;
+            strcpy(nomeAtributo1, "Densidade Populacional");
+            atributo1 = -densidadePop1;
+            atributo2 = -densidadePop2;
             printf("você escolheu Pontos Densidade Populacional, escolha o segundo atributo\n");
             printf("1. População\n");
             printf("2. Pib\n");
@@ -115,33 +121,38 @@ int main() {
     scanf("%d", &opcao);
     switch (opcao) {
         case 1:
-            atributo2 = populacao1;
+            strcpy(nomeAtributo2, "População");
+            atributoA = populacao1;
             atributoB = populacao2;
             printf("você escolheu População como segundo atributo\n");
 
             break;
 
         case 2:
-            atributo2 = pib1;
+            strcpy(nomeAtributo2, "Pib");
+            atributoA = pib1;
             atributoB = pib2;
             printf("você escolheu Pib como segundo atributo\n");
 
             break;
 
         case 3:
-            atributo2 = area1;
+            strcpy(nomeAtributo2, "Area");
+            atributoA = area1;
             atributoB = area2;
             printf("você escolheu Area, como segundo atributo\n");
 
             break;
         case 4:
-            atributo2 = pontosTuristicos1;
+            strcpy(nomeAtributo2, "Pontos Turisticos");
+            atributoA = pontosTuristicos1;
             atributoB = pontosTuristicos2;
             printf("você escolheu Pontos Turisticos como segundo atributo\n");
             break;
 
         case 5:
-            atributo2 = densidadePop1;
+            strcpy(nomeAtributo2, "Densidade Populacional");
+            atributoA = densidadePop1;
             atributoB = densidadePop2;
             printf("você escolheu Pontos Densidade Populacional como segundo atributo\n");
             break;
@@ -149,24 +160,21 @@ int main() {
         default:
             printf("Opção inválida. Tente novamente.\n");
         }
-        
-    printf("%.3Lf, %.3Lf, %.3Lf, %.31Lf\n", atributo1, atributo2, atributoA, atributoB);
-
-    // Comparação de Cartas:
-    // Desenvolva a lógica de comparação entre duas cartas.
-    // Utilize estruturas de decisão como if, if-else para comparar atributos como população, área, PIB, etc.
     
-   /* printf("\nComparação de cartas (Atributo: Pontos Turisticos):\n");
- 
-    printf("\nCarta 1 - %s: %d\n", estado1, pontosTuristicos1);
-    printf("Carta 2 - %s: %d\n", estado2, pontosTuristicos2);
+    
+    //comparando os dois primeiros atributos
+    char resultado[100];
+    int somaAtributos;
+    if (atributo1 != atributo2) {
+        (atributo1 > atributo2) 
+            ? snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade1, nomeAtributo1)
+            : snprintf(resultado, sizeof(resultado), "\n%s Ganhou no atributo %s", nomeCidade2, nomeAtributo2);
+            
+            printf("%s\n", resultado);
+            printf("%s => %s: %.3Lf, %s: %.3Lf\n", nomeAtributo1, nomeCidade1, nomeCidade2, nomeAtributo2, atributo1, atributo2);
+    }
 
 
-    if ( pontosTuristicos1 > pontosTuristicos2) {
-        printf("\nResultado: Carta 1 (%s) venceu!\n", estado1); 
-    } else {
-        printf("\nResultado: Carta 2 (%s) venceu!\n", estado2);
-    }*/
 
     return 0;
 }
